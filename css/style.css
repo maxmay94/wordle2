@@ -17,11 +17,13 @@ html {
   --serif: 'Marcellus', serif;
   --title-color: rgb(171, 121, 80);
   --box-color: rgb(163, 117, 117);
+  --key-main: rgb(115, 103, 103);
+  --background: rgb(137, 47, 47);
   font-size: 62.5%
 }
 
 body {
-  background-color: rgb(137, 47, 47);
+  background-color: var(--background);
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -30,7 +32,6 @@ body {
 
 h1 {
   font-family: var(--serif);
-  font-weight: bold;
   font-size: 4.5vmin;
   color: var(--title-color);
 }
@@ -42,13 +43,47 @@ main {
   flex-direction: column;
 }
 
-div > div {
-  border: solid var(--box-color);
-  margin: .5vmin;
-  width: 10vmin;
-  height: 10vmin;
-}
-
 .row {
   display: flex;
+}
+
+.key-row {
+  display: flex;
+}
+
+.row > div {
+  border: solid var(--box-color);
+  margin: .5vmin;
+  width: 9vmin;
+  height: 9vmin;
+}
+
+.key-row > div {
+  font-family: var(--serif);
+  text-align: center;
+  color: var(--background);
+  border-radius: 7px;
+  margin: .5vmin;
+  height: 8vmin;
+  width: 6vmin;
+  background-color: var(--box-color);
+  font-size: 2vmin;
+  
+}
+
+#enter, #delete {
+width: 10vmin;
+}
+
+#kr1 {
+  margin-top: 1vmin;
+  margin-left: 1.8vmin;
+}
+
+#kr2 {
+  margin-left: 5.5vmin;
+}
+
+#kr3 {
+  margin-left: 1.7vmin;
 }
