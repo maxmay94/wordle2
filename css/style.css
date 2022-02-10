@@ -17,7 +17,7 @@ html {
   --serif: 'Marcellus', serif;
   --title-color: rgb(171, 121, 80);
   --box-color: rgb(163, 117, 117);
-  --key-main: rgb(115, 103, 103);
+  --key-main: rgb(182, 119, 68);
   --background: rgb(137, 47, 47);
   font-size: 62.5%
 }
@@ -66,9 +66,9 @@ main {
   margin: .5vmin;
   height: 8vmin;
   width: 6vmin;
-  background-color: var(--box-color);
-  font-size: 2vmin;
-  
+  background-color: var(--key-main);
+  font-size: 2.3vmin;
+  line-height: 8vmin;
 }
 
 #enter, #delete {
