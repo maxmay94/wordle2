@@ -1,0 +1,54 @@
+html {
+  box-sizing: border-box
+}
+
+/* The Universal Selector */
+*, /* All elements*/
+*::before, /* All ::before pseudo-elements */
+*::after { /* All ::after pseudo-elements */
+  /* height & width will now include border & padding by default
+     but can be over-ridden as needed */
+  box-sizing: inherit;
+}
+
+/* resets font size to be 62.5% of the user preference - 
+     in most browser configurations this will be 10px */
+:root {
+  --serif: 'Marcellus', serif;
+  --title-color: rgb(171, 121, 80);
+  --box-color: rgb(163, 117, 117);
+  font-size: 62.5%
+}
+
+body {
+  background-color: rgb(137, 47, 47);
+  /* Use a system font, if none are available use an available sans-sarif font */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-weight: bold;
+  font-size: 4.5vmin;
+  color: var(--title-color);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+div > div {
+  border: solid var(--box-color);
+  margin: .5vmin;
+  width: 10vmin;
+  height: 10vmin;
+}
+
+.row {
+  display: flex;
+}
