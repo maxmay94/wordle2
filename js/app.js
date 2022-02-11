@@ -1,13 +1,14 @@
 /*-------------------------------- Constants --------------------------------*/
 
-
+import {getWord, checkWord} from "../Data/word-list.js"
 
 /*---------------------------- Variables (state) ----------------------------*/
 
 let turnNum = 0
 let currentGuess = []
 let prevTurns = []
-let secretWord = 'bread'.toLocaleUpperCase()
+let secretWord = getWord(1).toLocaleUpperCase()
+console.log(secretWord)
 
 /*------------------------ Cached Element References ------------------------*/
 
