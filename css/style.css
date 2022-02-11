@@ -20,6 +20,7 @@ html {
   --key-main: rgb(182, 119, 68);
   --background: rgb(137, 47, 47);
   --sans-serif: 'Encode Sans', sans-serif;
+  --correct: rgb(58, 107, 58);
   font-size: 62.5%;
 }
 
@@ -75,6 +76,12 @@ main {
   width: 6vmin;
   background-color: var(--key-main);
   border-radius: 7px;
+}
+
+/* Keys dont change when correct */
+.correct {
+  background-color: var(--correct);
+  border-color: var(--correct);
 }
 
 #enter, #delete {

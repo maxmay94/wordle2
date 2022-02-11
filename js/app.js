@@ -7,12 +7,12 @@
 let turnNum = 0
 let currentGuess = []
 let prevTurns = []
-let secretWord = 'bread'
+let secretWord = 'bread'.toLocaleUpperCase()
 
 /*------------------------ Cached Element References ------------------------*/
 
 const squares = document.querySelectorAll('.square')
-// const keys = document.querySelectorAll('.key')
+const keys = document.querySelectorAll('.key')
 
 const gameBoard = document.querySelector('#main-game-area')
 const keyBoard = document.querySelector('#keyboard')
@@ -26,7 +26,7 @@ keyBoard.addEventListener('click', handleClick)
 
 function handleClick(evt) {
   let keyClick = evt.target.id
-  if(evt.target.id === 'delete') {
+  if (evt.target.id === 'delete') {
     renderDelete()
   } else if (evt.target.id === 'enter') {
     checkGuess()
@@ -62,11 +62,32 @@ function renderBox(keyClick) {
   //make it so user can edit a letter without deleting previous letters
 }
 
+// Keys lock after correct guess
 function checkGuess() {
-  if(currentGuess.length === 5) {
-    
+  if (currentGuess.length === 5) {
+    currentGuess.forEach((letter, i) => {
+      if(letter === secretWord[i]) {
+        squares[(prevTurns.length * 5) + i].classList.add('correct')
+        let idx = getKeyIndex(letter)
+        keys[idx].classList.add('correct')
+        console.log(keys[idx])
+        console.log(keys)
+      }
+    })
+    turnNum++
+    prevTurns.push(currentGuess)
+    currentGuess = []
+    return
   }
   else {
     return
   }
+}
+
+function getKeyIndex(char) {
+  let index
+  keys.forEach((key, idx) => {
+    if(key.id === char) {index = idx}
+  })
+  return index
 }
