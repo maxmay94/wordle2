@@ -30,7 +30,7 @@ function handleClick(evt) {
     renderDelete()
   } else if (keyClick === 'enter') {
     checkGuess()
-  } else if (evt.target.className === 'key') {
+  } else if (evt.target.className.includes('key')) {
     renderKey(keyClick)
   } else if (evt.target.className === 'square') {
     renderBox(keyClick)
@@ -62,7 +62,6 @@ function renderBox(keyClick) {
   //make it so user can edit a letter without deleting previous letters
 }
 
-// keyboard Keys lock after color change  -----> // keys[idx].classList.add('correct')
 function checkGuess() {
   if (currentGuess.length === 5) {
     currentGuess.forEach((letter, i) => {
@@ -70,8 +69,7 @@ function checkGuess() {
         squares[(prevTurns.length * 5) + i].classList.add('correct')
         let idx = getKeyIndex(letter)
         keys[idx].classList.add('correct')
-        console.log(keys[idx])
-      } else if(secretWord.includes(letter)) {
+      } else if(secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
         squares[(prevTurns.length * 5) + i].classList.add('almost')
         let idx = getKeyIndex(letter)
         keys[idx].classList.add('almost')

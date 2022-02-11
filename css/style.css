@@ -37,7 +37,7 @@ body {
 
 h1 {
   font-family: var(--serif);
-  font-size: 4.5vmin;
+  font-size: 5vmin;
   color: var(--title-color);
 }
 
@@ -88,10 +88,10 @@ main {
   border-radius: 7px;
 }
 
-.correct {
-  background-color: var(--correct);
-  border-color: var(--correct);
-  color: var(--font-color)
+.miss {
+  background-color: var(--miss);
+  border-color: var(--miss);
+  color: var(--font-color);
 }
 
 .almost {
@@ -100,10 +100,10 @@ main {
   color: var(--font-color)
 }
 
-.miss {
-  background-color: var(--miss);
-  border-color: var(--miss);
-  color: var(--font-color);
+.correct {
+  background-color: var(--correct);
+  border-color: var(--correct);
+  color: var(--font-color)
 }
 
 #enter, #delete {
