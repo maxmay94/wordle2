@@ -77,7 +77,7 @@ function checkGuess() {
       }    
     })
     turnNum++
-    prevTurns.push(currentGuess) // maybe push thisTurn?? haven't decided yet
+    prevTurns.push(currentGuess) // maybe push thisTurn?? haven't decided yet. might make it easier to make a share emoji thing at the end
     renderGuess(thisTurn) 
     currentGuess = []
     return
@@ -97,13 +97,9 @@ function getKeyIndex(char) {
 
 function renderGuess(thisTurn) {
   let i = 0 
-  let curRow = (prevTurns.length - 1) * 5
-
   let timer = setInterval(function () {
-    squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', 'animate__flip', `${thisTurn[i]}`)
+    squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', 'animate__flip', `${thisTurn[i]}`, 'shadow')
     i++
-    if(i === 5) {
-      clearInterval(timer)
-    }
+    if(i === 5) {clearInterval(timer)}
   }, 1000)
 }

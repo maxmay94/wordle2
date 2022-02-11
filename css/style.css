@@ -15,15 +15,15 @@ html {
      in most browser configurations this will be 10px */
 :root {
   --serif: 'Marcellus', serif;
+  --background: rgb(137, 47, 47);
+  --font-color: rgb(50, 50, 50);
   --title-color: rgb(182, 119, 68);
   --box-color: rgb(163, 117, 117);
   --key-main: rgba(212, 212, 212, 0.738);
-  --background: rgb(137, 47, 47);
   --sans-serif: 'Encode Sans', sans-serif;
   --correct: rgb(58, 107, 58);
   --almost: rgb(190, 109, 63);
   --miss: rgb(141, 141, 141);
-  --font-color: rgb(50, 50, 50);
   font-size: 62.5%;
 }
 
@@ -104,6 +104,10 @@ main {
   background-color: var(--correct);
   border-color: var(--correct);
   color: var(--font-color)
+}
+
+.shadow {
+  box-shadow: 0 1vmin 1vmin 0 rgba(41, 41, 41, 0.75); 
 }
 
 #enter, #delete {
