@@ -62,7 +62,7 @@ function renderBox(keyClick) {
   //make it so user can edit a letter without deleting previous letters
 }
 
-// Keys lock after correct guess
+// keyboard Keys lock after color change  -----> // keys[idx].classList.add('correct')
 function checkGuess() {
   if (currentGuess.length === 5) {
     currentGuess.forEach((letter, i) => {

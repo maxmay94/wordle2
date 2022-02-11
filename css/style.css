@@ -17,12 +17,12 @@ html {
   --serif: 'Marcellus', serif;
   --title-color: rgb(182, 119, 68);
   --box-color: rgb(163, 117, 117);
-  --key-main: rgb(255, 255, 255);
+  --key-main: rgba(212, 212, 212, 0.738);
   --background: rgb(137, 47, 47);
   --sans-serif: 'Encode Sans', sans-serif;
   --correct: rgb(58, 107, 58);
   --almost: rgb(190, 109, 63);
-  --miss: darkgray;
+  --miss: rgb(141, 141, 141);
   --font-color: rgb(50, 50, 50);
   font-size: 62.5%;
 }
@@ -46,6 +46,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: var(--font-color);
 }
 
 .row {
@@ -56,14 +57,21 @@ main {
   display: flex;
 }
 
-.row > div {
+.key {
+  background-color: var(--key-main);
+}
+
+.square {
+  color: var(--box-color);
   border: solid var(--box-color);
+}
+
+.row > div {
   margin: .3vmin;
   width: 9vmin;
   height: 9vmin;
 
   font-family: var(--serif);
-  color: var(--box-color);
   font-size: 7vmin;
   text-align: center;
 }
@@ -77,26 +85,25 @@ main {
   margin: .4vmin;
   height: 8vmin;
   width: 6vmin;
-  background-color: var(--key-main);
   border-radius: 7px;
 }
 
 .correct {
-  background-color: var(--correct) !important;
-  border-color: var(--correct) !important;
-  color: var(--font-color) !important;
+  background-color: var(--correct);
+  border-color: var(--correct);
+  color: var(--font-color)
 }
 
 .almost {
-  background-color: var(--almost) !important;
-  border-color: var(--almost) !important;
-  color: var(--font-color) !important;
+  background-color: var(--almost);
+  border-color: var(--almost);
+  color: var(--font-color)
 }
 
 .miss {
-  background-color: var(--miss) !important;
-  border-color: var(--miss) !important;
-  color: var(--font-color) !important;
+  background-color: var(--miss);
+  border-color: var(--miss);
+  color: var(--font-color);
 }
 
 #enter, #delete {
