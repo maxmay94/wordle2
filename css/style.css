@@ -19,7 +19,8 @@ html {
   --box-color: rgb(163, 117, 117);
   --key-main: rgb(182, 119, 68);
   --background: rgb(137, 47, 47);
-  font-size: 62.5%
+  --sans-serif: 'Encode Sans', sans-serif;
+  font-size: 62.5%;
 }
 
 body {
@@ -56,19 +57,24 @@ main {
   margin: .3vmin;
   width: 9vmin;
   height: 9vmin;
+
+  font-family: var(--serif);
+  color: var(--box-color);
+  font-size: 7vmin;
+  text-align: center;
 }
 
 .key-row > div {
   font-family: var(--serif);
-  text-align: center;
+  font-size: 2.3vmin;
   color: var(--background); 
-  border-radius: 7px;
-  margin: .5vmin;
+  line-height: 8vmin;
+  text-align: center;
+  margin: .4vmin;
   height: 8vmin;
   width: 6vmin;
   background-color: var(--key-main);
-  font-size: 2.3vmin;
-  line-height: 8vmin;
+  border-radius: 7px;
 }
 
 #enter, #delete {

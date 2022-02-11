@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Encode+Sans&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./css/style.css">
   <script defer src="./js/app.js"></script>
@@ -18,82 +19,83 @@
   <main>
     <h1 id="main-title" >WORDLE2</h1>
     <section id="main-game-area">
-      <div class="row row-0">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="row row-0" id="r0">
+        <div class="square" id="r00"></div>
+        <div class="square" id="r01"></div>
+        <div class="square" id="r02"></div>
+        <div class="square" id="r03"></div>
+        <div class="square" id="r04"></div>
       </div>
-      <div class="row row-1">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="row row-1" id="r1">
+        <div class="square" id="r10"></div>
+        <div class="square" id="r11"></div>
+        <div class="square" id="r12"></div>
+        <div class="square" id="r13"></div>
+        <div class="square" id="r14"></div>
       </div>
-      <div class="row row-2">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="row row-2" id="r2">
+        <div class="square" id="r20"></div>
+        <div class="square" id="r21"></div>
+        <div class="square" id="r22"></div>
+        <div class="square" id="r23"></div>
+        <div class="square" id="r24"></div>
       </div>
-      <div class="row row-3">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="row row-3" id="r3">
+        <div class="square" id="r30"></div>
+        <div class="square" id="r31"></div>
+        <div class="square" id="r32"></div>
+        <div class="square" id="r33"></div>
+        <div class="square" id="r34"></div>
       </div>
-      <div class="row row-4">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="row row-4" id="r4">
+        <div class="square" id="r40"></div>
+        <div class="square" id="r41"></div>
+        <div class="square" id="r42"></div>
+        <div class="square" id="r43"></div>
+        <div class="square" id="r44"></div>
       </div>
-      <div class="row row-5">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
+      <div class="row row-5" id="r5">
+        <div class="square" id="r50"></div>
+        <div class="square" id="r51"></div>
+        <div class="square" id="r52"></div>
+        <div class="square" id="r53"></div>
+        <div class="square" id="r54"></div>
       </div>
     </section>
-    <section id=""keyboard">
+    <!-- --------------------------------------------------------------------------- !-->
+    <section id="keyboard">
       <div class="key-row" id="kr1">
-        <div class="key" id="q">Q</div>
-        <div class="key" id="w">W</div>
-        <div class="key" id="e">E</div>
-        <div class="key" id="r">R</div>
-        <div class="key" id="t">T</div>
-        <div class="key" id="y">Y</div>
-        <div class="key" id="u">U</div>
-        <div class="key" id="i">I</div>
-        <div class="key" id="o">O</div>
-        <div class="key" id="p">P</div>
+        <div class="key" id="Q">Q</div>
+        <div class="key" id="W">W</div>
+        <div class="key" id="E">E</div>
+        <div class="key" id="R">R</div>
+        <div class="key" id="T">T</div>
+        <div class="key" id="Y">Y</div>
+        <div class="key" id="U">U</div>
+        <div class="key" id="I">I</div>
+        <div class="key" id="O">O</div>
+        <div class="key" id="P">P</div>
       </div>
       <div class="key-row" id="kr2">
-        <div class="key" id="a">A</div>
-        <div class="key" id="s">S</div>
-        <div class="key" id="d">D</div>
-        <div class="key" id="f">F</div>
-        <div class="key" id="g">G</div>
-        <div class="key" id="h">H</div>
-        <div class="key" id="j">J</div>
-        <div class="key" id="k">K</div>
-        <div class="key" id="l">L</div>
+        <div class="key" id="A">A</div>
+        <div class="key" id="S">S</div>
+        <div class="key" id="D">D</div>
+        <div class="key" id="F">F</div>
+        <div class="key" id="G">G</div>
+        <div class="key" id="H">H</div>
+        <div class="key" id="J">J</div>
+        <div class="key" id="K">K</div>
+        <div class="key" id="L">L</div>
       </div>
       <div class="key-row" id="kr3">
         <div class="key" id="enter">ENTER</div>
-        <div class="key" id="z">Z</div>
-        <div class="key" id="x">X</div>
-        <div class="key" id="c">C</div>
-        <div class="key" id="v">V</div>
-        <div class="key" id="b">B</div>
-        <div class="key" id="n">N</div>
-        <div class="key" id="m">M</div>
+        <div class="key" id="Z">Z</div>
+        <div class="key" id="X">X</div>
+        <div class="key" id="C">C</div>
+        <div class="key" id="V">V</div>
+        <div class="key" id="B">B</div>
+        <div class="key" id="N">N</div>
+        <div class="key" id="M">M</div>
         <div class="key" id="delete">DELETE</div>
       </div>
     </section>
