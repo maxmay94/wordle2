@@ -41,8 +41,6 @@ function renderKey(keyClick) {
   if (currentGuess.length < 5) {
     squares[(prevTurns.length * 5) + (currentGuess.length)].textContent = keyClick
     currentGuess.push(keyClick)
-  } else {
-    ////////////////////////?
   }
 }
 
@@ -52,10 +50,6 @@ function renderDelete() {
   return
 }
 
-function renderEnter() {
-
-}
-
 function renderBox(keyClick) {
   console.log(keyClick)
   //come back to this
@@ -63,24 +57,28 @@ function renderBox(keyClick) {
 }
 
 function checkGuess() {
+  let curRow = (prevTurns.length * 5)
+  let thisTurn = []
+
   if (currentGuess.length === 5) {
     currentGuess.forEach((letter, i) => {
-      if(letter === secretWord[i]) {
-        squares[(prevTurns.length * 5) + i].classList.add('correct')
+      if (letter === secretWord[i]) {
+        thisTurn.push('correct')
         let idx = getKeyIndex(letter)
         keys[idx].classList.add('correct')
-      } else if(secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
-        squares[(prevTurns.length * 5) + i].classList.add('almost')
+      } else if (secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
+        thisTurn.push('almost')
         let idx = getKeyIndex(letter)
         keys[idx].classList.add('almost')
       } else {
-        squares[(prevTurns.length * 5) + i].classList.add('miss')
+        thisTurn.push('miss')
         let idx = getKeyIndex(letter)
         keys[idx].classList.add('miss')
-      }
+      }    
     })
     turnNum++
-    prevTurns.push(currentGuess)
+    prevTurns.push(currentGuess) // maybe push thisTurn?? haven't decided yet
+    renderGuess(thisTurn) 
     currentGuess = []
     return
   }
@@ -92,7 +90,20 @@ function checkGuess() {
 function getKeyIndex(char) {
   let index
   keys.forEach((key, idx) => {
-    if(key.id === char) {index = idx}
+    if (key.id === char) { index = idx }
   })
   return index
+}
+
+function renderGuess(thisTurn) {
+  let i = 0 
+  let curRow = (prevTurns.length - 1) * 5
+
+  let timer = setInterval(function () {
+    squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', 'animate__flip', `${thisTurn[i]}`)
+    i++
+    if(i === 5) {
+      clearInterval(timer)
+    }
+  }, 1000)
 }
