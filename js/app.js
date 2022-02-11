@@ -26,9 +26,9 @@ keyBoard.addEventListener('click', handleClick)
 
 function handleClick(evt) {
   let keyClick = evt.target.id
-  if (evt.target.id === 'delete') {
+  if (keyClick === 'delete') {
     renderDelete()
-  } else if (evt.target.id === 'enter') {
+  } else if (keyClick === 'enter') {
     checkGuess()
   } else if (evt.target.className === 'key') {
     renderKey(keyClick)
@@ -42,7 +42,7 @@ function renderKey(keyClick) {
     squares[(prevTurns.length * 5) + (currentGuess.length)].textContent = keyClick
     currentGuess.push(keyClick)
   } else {
-    console.log('2Much')
+    ////////////////////////?
   }
 }
 
@@ -71,7 +71,14 @@ function checkGuess() {
         let idx = getKeyIndex(letter)
         keys[idx].classList.add('correct')
         console.log(keys[idx])
-        console.log(keys)
+      } else if(secretWord.includes(letter)) {
+        squares[(prevTurns.length * 5) + i].classList.add('almost')
+        let idx = getKeyIndex(letter)
+        keys[idx].classList.add('almost')
+      } else {
+        squares[(prevTurns.length * 5) + i].classList.add('miss')
+        let idx = getKeyIndex(letter)
+        keys[idx].classList.add('miss')
       }
     })
     turnNum++

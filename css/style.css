@@ -17,10 +17,13 @@ html {
   --serif: 'Marcellus', serif;
   --title-color: rgb(182, 119, 68);
   --box-color: rgb(163, 117, 117);
-  --key-main: rgb(182, 119, 68);
+  --key-main: rgb(255, 255, 255);
   --background: rgb(137, 47, 47);
   --sans-serif: 'Encode Sans', sans-serif;
   --correct: rgb(58, 107, 58);
+  --almost: rgb(190, 109, 63);
+  --miss: darkgray;
+  --font-color: rgb(50, 50, 50);
   font-size: 62.5%;
 }
 
@@ -35,7 +38,7 @@ body {
 h1 {
   font-family: var(--serif);
   font-size: 4.5vmin;
-  color: var(--key-main);
+  color: var(--title-color);
 }
 
 main {
@@ -68,7 +71,7 @@ main {
 .key-row > div {
   font-family: var(--serif);
   font-size: 2.3vmin;
-  color: var(--background); 
+  color: var(--font-color); 
   line-height: 8vmin;
   text-align: center;
   margin: .4vmin;
@@ -78,10 +81,22 @@ main {
   border-radius: 7px;
 }
 
-/* Keys dont change when correct */
 .correct {
-  background-color: var(--correct);
-  border-color: var(--correct);
+  background-color: var(--correct) !important;
+  border-color: var(--correct) !important;
+  color: var(--font-color) !important;
+}
+
+.almost {
+  background-color: var(--almost) !important;
+  border-color: var(--almost) !important;
+  color: var(--font-color) !important;
+}
+
+.miss {
+  background-color: var(--miss) !important;
+  border-color: var(--miss) !important;
+  color: var(--font-color) !important;
 }
 
 #enter, #delete {
