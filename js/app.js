@@ -1,6 +1,9 @@
 /*-------------------------------- Constants --------------------------------*/
 
 import {getWord, checkWord} from "../Data/word-list.js"
+const ltrs = ['Q','W','E','R','T','Y','U','I','O','P',
+              'A','S','D','F','G','H','J','K','L',
+              'Z','X','C','V','B','N','M']
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -35,8 +38,10 @@ function handleKeydown(evt) {
     renderDelete()
   } else if (press === 'ENTER') {
     checkGuess()
-  } else {
+  } else if (ltrs.includes(press)){
     renderKey(press)
+  } else {
+    return
   }
 }
 
@@ -75,7 +80,7 @@ function renderBox(keyClick) {
 
 function checkGuess() {
   let thisTurn = []
-  let check = currentGuess.join('').toLocaleLowerCase()
+  let check = currentGuess.join('').toLowerCase()
 
   if (currentGuess.length === 5) {
     if(checkWord(check)) { 
@@ -97,7 +102,9 @@ function checkGuess() {
       })
       turnNum++
       prevTurns.push(currentGuess) // maybe push thisTurn?? haven't decided yet. might make it easier to make a share emoji thing at the end
-      renderGuess(thisTurn) 
+
+      check === secretWord.toLowerCase() ? renderTurn(thisTurn, true) : renderTurn(thisTurn, false) 
+
       currentGuess = []
       return
     }
@@ -134,14 +141,20 @@ function getKeyIndex(char) {
   return index
 }
 
-function renderGuess(thisTurn) {
+function renderTurn(thisTurn, bool) {
   let i = 0 
-  squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', 'animate__flip', `${thisTurn[i]}`, 'shadow')
+  let animation
+  let time 
+
+  bool ? animation = 'animate__shakeY' : animation = 'animate__flip'
+  bool ? time = 250 : time = 750
+
+  squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', animation, `${thisTurn[i]}`, 'shadow')
   i++
   //Do once first so it happens right on click instaed of waiting a second
   let timer = setInterval(function () {
-    squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', 'animate__flip', `${thisTurn[i]}`, 'shadow')
+    squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', animation, `${thisTurn[i]}`, 'shadow')
     i++
     if(i === 5) {clearInterval(timer)}
-  }, 750)
+  }, time)
 }
