@@ -23,8 +23,22 @@ const keyBoard = document.querySelector('#keyboard')
 
 gameBoard.addEventListener('click', handleClick)
 keyBoard.addEventListener('click', handleClick)
+document.addEventListener('keydown', handleKeydown)
 
 /*-------------------------------- Functions --------------------------------*/
+
+function handleKeydown(evt) {
+  clearAnimation()
+  let press = evt.key
+  press = press.toUpperCase()
+  if (press === 'BACKSPACE') {
+    renderDelete()
+  } else if (press === 'ENTER') {
+    checkGuess()
+  } else {
+    renderKey(press)
+  }
+}
 
 function handleClick(evt) {
   let keyClick = evt.target.id

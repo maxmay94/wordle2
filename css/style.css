@@ -40,7 +40,9 @@ body {
 h1 {
   font-family: var(--title-font);
   font-size: 11vmin;
+  text-shadow: 3px 4px 1px var(--key-main);
   color: var(--almost);
+  border-bottom: 3px solid var(--box-color);
 }
 
 main {
