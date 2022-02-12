@@ -7,7 +7,8 @@ import {getWord, checkWord} from "../Data/word-list.js"
 let turnNum = 0
 let currentGuess = []
 let prevTurns = []
-let secretWord = getWord(1).toLocaleUpperCase()
+// let secretWord = getWord(1).toUpperCase()
+let secretWord = 'bread'.toUpperCase()
 console.log(secretWord)
 
 /*------------------------ Cached Element References ------------------------*/
@@ -128,5 +129,5 @@ function renderGuess(thisTurn) {
     squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', 'animate__flip', `${thisTurn[i]}`, 'shadow')
     i++
     if(i === 5) {clearInterval(timer)}
-  }, 1000)
+  }, 750)
 }

@@ -15,9 +15,11 @@ html {
      in most browser configurations this will be 10px */
 :root {
   --serif: 'Marcellus', serif;
+  
   --background: rgb(137, 47, 47);
   --font-color: rgb(50, 50, 50);
   --title-color: rgb(182, 119, 68);
+  --title-font: 'Faster One', cursive;
   --box-color: rgb(163, 117, 117);
   --key-main: rgba(212, 212, 212, 0.738);
   --sans-serif: 'Encode Sans', sans-serif;
@@ -36,9 +38,9 @@ body {
 }
 
 h1 {
-  font-family: var(--serif);
-  font-size: 5vmin;
-  color: var(--title-color);
+  font-family: var(--title-font);
+  font-size: 11vmin;
+  color: var(--almost);
 }
 
 main {
@@ -47,6 +49,9 @@ main {
   align-items: center;
   flex-direction: column;
   color: var(--font-color);
+
+  max-height: 100vh;
+
 }
 
 .row {
@@ -71,13 +76,13 @@ main {
   width: 9vmin;
   height: 9vmin;
 
-  font-family: var(--serif);
+  font-family: var(--sans-serif);
   font-size: 7vmin;
   text-align: center;
 }
 
 .k-row > div {
-  font-family: var(--serif);
+  font-family: var(--sans-serif);
   font-size: 2.3vmin;
   color: var(--font-color); 
   line-height: 8vmin;
@@ -108,6 +113,10 @@ main {
 
 .shadow {
   box-shadow: 0 1vmin 1vmin 0 rgba(41, 41, 41, 0.75); 
+}
+
+#main-title {
+  margin: 1vmin 0 1vmin 0;
 }
 
 #enter, #delete {
