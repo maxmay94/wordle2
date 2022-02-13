@@ -5779,6 +5779,10 @@ function getWordIndex(word) {
   if (lvl5Words.includes(word)) return lvl5Words.indexOf(word)
 }
 
+function setWord(num) {
+  return lvl1Words[num]
+}
+
 function checkWord(word) {
   if (lvl1Words.includes(word)) return true
   if (lvl2Words.includes(word)) return true
@@ -5787,4 +5791,4 @@ function checkWord(word) {
   if (lvl5Words.includes(word)) return true
 }
 
-export {getWord, getWordIndex, checkWord}
+export {getWord, getWordIndex, setWord, checkWord}
