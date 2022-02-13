@@ -35,6 +35,7 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
+  /* max-height: 90vh; */
 }
 
 h1 {
@@ -42,8 +43,11 @@ h1 {
   font-size: 11vmin;
   text-shadow: 3px 4px 1px var(--key-main);
   color: var(--almost);
-  border-bottom: 3px solid var(--box-color);
+  align-items: center;
+  /* border-bottom: 3px solid var(--box-color); */
 }
+
+
 
 main {
   display: flex;
@@ -52,8 +56,24 @@ main {
   flex-direction: column;
   color: var(--font-color);
 
-  max-height: 100vh;
+  max-height: 90vh;
+}
 
+#button-zone {
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  padding: 0 0 0 0;
+  margin: 10px 10px 0 0 ;
+  font-family: var(--sans-serif);
+  justify-content: right;
+  
+}
+
+.dropdown-menu {
+  margin: 0 auto;
+  padding-top: 0;
+  border: 0;
 }
 
 .row {
@@ -81,6 +101,7 @@ main {
   font-family: var(--sans-serif);
   font-size: 7vmin;
   text-align: center;
+  line-height: 8.5vmin;
 }
 
 .k-row > div {
@@ -114,11 +135,12 @@ main {
 }
 
 .shadow {
-  box-shadow: 0 1vmin 1vmin 0 rgba(41, 41, 41, 0.75); 
+  box-shadow: 0 1vmin 1vmin 0 rgba(41, 41, 41, 0.75) !important;
 }
 
+
 #main-title {
-  margin: 1vmin 0 1vmin 0;
+  margin: 0 0 0 0;
 }
 
 #enter, #delete {

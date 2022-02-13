@@ -1,18 +1,21 @@
 /*-------------------------------- Constants --------------------------------*/
 
-import {getWord, checkWord} from "../Data/word-list.js"
+import {getWord, getWordIndex, checkWord} from "../Data/word-list.js"
 const ltrs = ['Q','W','E','R','T','Y','U','I','O','P',
               'A','S','D','F','G','H','J','K','L',
               'Z','X','C','V','B','N','M']
-
+console.log(ltrs.indexOf('W'))
 /*---------------------------- Variables (state) ----------------------------*/
 
 let turnNum = 0
 let currentGuess = []
 let prevTurns = []
-// let secretWord = getWord(1).toUpperCase()
-let secretWord = 'bread'.toUpperCase()
+let secretWord = getWord(1).toUpperCase()
+// let secretWord = 'bread'.toUpperCase()
+let wordIndex = getWordIndex(secretWord.toLowerCase())
+
 console.log(secretWord)
+console.log(wordIndex)
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -91,9 +94,11 @@ function checkGuess() {
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
         } else if (secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
+
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('almost')
+
         } else {
           thisTurn.push('miss')
           let idx = getKeyIndex(letter)
@@ -101,8 +106,8 @@ function checkGuess() {
         }    
       })
       turnNum++
-      prevTurns.push(currentGuess) // maybe push thisTurn?? haven't decided yet. might make it easier to make a share emoji thing at the end
-
+      prevTurns.push(thisTurn) 
+   
       check === secretWord.toLowerCase() ? renderTurn(thisTurn, true) : renderTurn(thisTurn, false) 
 
       currentGuess = []
@@ -149,9 +154,12 @@ function renderTurn(thisTurn, bool) {
   bool ? animation = 'animate__shakeY' : animation = 'animate__flip'
   bool ? time = 250 : time = 750
 
+
+  // add modal for win!
+
+  //Do once first so it happens right on click instaed of waiting a second
   squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', animation, `${thisTurn[i]}`, 'shadow')
   i++
-  //Do once first so it happens right on click instaed of waiting a second
   let timer = setInterval(function () {
     squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', animation, `${thisTurn[i]}`, 'shadow')
     i++

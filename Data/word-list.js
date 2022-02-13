@@ -5771,6 +5771,14 @@ function getWord(lvl) {
   if (lvl === 5) return lvl5Words[Math.floor(Math.random() * lvl5Words.length - 1)]
 }
 
+function getWordIndex(word) {
+  if (lvl1Words.includes(word)) return lvl1Words.indexOf(word)
+  if (lvl2Words.includes(word)) return lvl2Words.indexOf(word)
+  if (lvl3Words.includes(word)) return lvl3Words.indexOf(word)
+  if (lvl4Words.includes(word)) return lvl4Words.indexOf(word)
+  if (lvl5Words.includes(word)) return lvl5Words.indexOf(word)
+}
+
 function checkWord(word) {
   if (lvl1Words.includes(word)) return true
   if (lvl2Words.includes(word)) return true
@@ -5779,4 +5787,4 @@ function checkWord(word) {
   if (lvl5Words.includes(word)) return true
 }
 
-export {getWord, checkWord}
+export {getWord, getWordIndex, checkWord}
