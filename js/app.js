@@ -25,6 +25,7 @@ const resetBtn = document.getElementById('reset-btn')
 const challengeBtn = document.getElementById('challenge-button')
 const challengeTextBox = document.getElementById('challenge-id')
 const shareBtn = document.getElementById('share-button')
+const clipBoardBtn = document.getElementById('clipboard-button')
 
 const lvl1Btn = document.getElementById('lvl-1')
 const lvl2Btn = document.getElementById('lvl-2')
@@ -44,6 +45,7 @@ gameBoard.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', init)
 challengeBtn.addEventListener('click', challenge)
 shareBtn.addEventListener('click', renderModal)
+clipBoardBtn.addEventListener('click', copyToClipboard)
 
 lvl1Btn.addEventListener('click', changeLvl)
 lvl2Btn.addEventListener('click', changeLvl)
@@ -247,7 +249,19 @@ function renderModal() {
       })
       myString += ('<br>')
     })
-    myString += ('<br>Use code: ' + wordIndex)
+    myString += ('Use code: ' + wordIndex)
     modalText.innerHTML = myString
   }
+}
+
+function copyToClipboard() {
+  let newClip = modalText.innerHTML
+  function updateClipboard(newClip) {
+    navigator.clipboard.writeText(newClip).then(function() {
+    }, function() {
+      console.log('Clip Failed')
+    });
+  }
+  newClip = newClip.replaceAll('<br>', '\n')
+  updateClipboard(newClip)
 }
