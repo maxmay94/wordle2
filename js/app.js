@@ -7,11 +7,13 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let turnNum = 0
+let turnNum
 let currentGuess = []
 let prevTurns = []
 let secretWord
 let wordIndex
+let difficulty, challengeWord
+
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -53,6 +55,10 @@ function init() {
     key.className = 'key shadow'
   })
 }
+
+/*
+  FUNCTIONS TO CHANGE DIFFICULTY AND SET CHALLENGE WORD
+*/
 
 function handleKeydown(evt) {
   clearAnimation()
@@ -114,8 +120,8 @@ function checkGuess() {
           thisTurn.push('correct')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
-        } else if (secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
 
+        } else if (secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('almost')
@@ -175,9 +181,6 @@ function renderTurn(thisTurn, bool) {
   bool ? animation = 'animate__shakeY' : animation = 'animate__flip'
   bool ? time = 250 : time = 750
 
-
-  // add modal for win!
-
   //Do once first so it happens right on click instaed of waiting a second
   squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', animation, `${thisTurn[i]}`, 'shadow')
   i++
@@ -186,4 +189,7 @@ function renderTurn(thisTurn, bool) {
     i++
     if (i === 5) { clearInterval(timer) }
   }, time)
+
+
+   // add function for renderWin that pops a modal up and offers share challenge
 }

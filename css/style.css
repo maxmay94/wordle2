@@ -44,7 +44,6 @@ h1 {
   text-shadow: 3px 4px 1px var(--key-main);
   color: var(--almost);
   align-items: center;
-  /* border-bottom: 3px solid var(--box-color); */
 }
 
 
@@ -55,7 +54,6 @@ main {
   align-items: center;
   flex-direction: column;
   color: var(--font-color);
-
   max-height: 90vh;
 }
 
@@ -70,10 +68,19 @@ main {
   
 }
 
+.btn {
+  background-color: var(--key-main);
+}
+
 .dropdown-menu {
   margin: 0 auto;
   padding-top: 0;
   border: 0;
+  background-color: var(--key-main);
+}
+
+#pick-word-number {
+  background-color: var(--key-main);
 }
 
 .row {
@@ -136,11 +143,6 @@ main {
 
 .shadow {
   box-shadow: 0 1vmin 1vmin 0 rgba(41, 41, 41, 0.75) !important;
-}
-
-
-#main-title {
-  margin: 0 0 0 0;
 }
 
 #enter, #delete {
