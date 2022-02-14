@@ -25,6 +25,13 @@ const gameBoard = document.querySelector('#main-game-area')
 const keyBoard = document.querySelector('#keyboard')
 
 const resetBtn = document.getElementById('reset-btn')
+const lvl1Btn = document.getElementById('lvl-1')
+const lvl2Btn = document.getElementById('lvl-2')
+const lvl3Btn = document.getElementById('lvl-3')
+const lvl4Btn = document.getElementById('lvl-4')
+const lvl5Btn = document.getElementById('lvl-5')
+
+
 const modalText = document.getElementById('modal-text')
 
 const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
@@ -35,6 +42,11 @@ const modalTitle = document.querySelector('.modal-title')
 
 gameBoard.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', init)
+lvl1Btn.addEventListener('click', changeLvl)
+lvl2Btn.addEventListener('click', changeLvl)
+lvl3Btn.addEventListener('click', changeLvl)
+lvl4Btn.addEventListener('click', changeLvl)
+lvl5Btn.addEventListener('click', changeLvl)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -47,7 +59,9 @@ function init() {
   modalText.textContent = ''
   // num ? secretWord = setWord(num).toUpperCase() : secretWord = getWord(1).toUpperCase()
   secretWord = getWord(difficulty).toUpperCase()
+
   wordIndex = getWordIndex(secretWord.toLowerCase())
+
   console.log(secretWord)
   currentGuess = []
   prevTurns = []
@@ -66,6 +80,11 @@ function init() {
 /*
   FUNCTIONS TO CHANGE DIFFICULTY AND SET CHALLENGE WORD
 */
+
+function changeLvl(evt) {
+  difficulty = parseInt(evt.target.id.substring(4))
+  init()
+}
 
 function handleKeydown(evt) {
   clearAnimation()
@@ -197,10 +216,9 @@ function renderTurn(thisTurn, bool) {
     if (i === 5) { clearInterval(timer) }
   }, time)
 
-  if (currentGuess.join('') === secretWord) {renderModal()}
-  
-
-  // add function for renderWin that pops a modal up and offers share challenge
+  if (currentGuess.join('') === secretWord) {
+    setTimeout(() => renderModal(), 2000)
+  }
 }
 
 function renderModal() {
@@ -220,5 +238,6 @@ function renderModal() {
     })
     myString += ('<br>')
   })
+  myString += ('<br>' + 'Challenge your friends!<br>Use code: ' + wordIndex)
   modalText.innerHTML = myString
 }

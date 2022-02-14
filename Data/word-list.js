@@ -5772,15 +5772,21 @@ function getWord(lvl) {
 }
 
 function getWordIndex(word) {
-  if (lvl1Words.includes(word)) return lvl1Words.indexOf(word)
-  if (lvl2Words.includes(word)) return lvl2Words.indexOf(word)
-  if (lvl3Words.includes(word)) return lvl3Words.indexOf(word)
-  if (lvl4Words.includes(word)) return lvl4Words.indexOf(word)
-  if (lvl5Words.includes(word)) return lvl5Words.indexOf(word)
+  if (lvl1Words.includes(word)) return `A${lvl1Words.indexOf(word)}`
+  if (lvl2Words.includes(word)) return `B${lvl2Words.indexOf(word)}`
+  if (lvl3Words.includes(word)) return `C${lvl3Words.indexOf(word)}`
+  if (lvl4Words.includes(word)) return `D${lvl4Words.indexOf(word)}`
+  if (lvl5Words.includes(word)) return `E${lvl5Words.indexOf(word)}`
 }
 
 function setWord(num) {
-  return lvl1Words[num]
+  let lvlID = num.substring(0, 1)
+  let wordID = num.substring(1)
+  if(lvlID === 'A') return lvl1Words[wordID]
+  if(lvlID === 'B') return lvl2Words[wordID]
+  if(lvlID === 'C') return lvl3Words[wordID]
+  if(lvlID === 'D') return lvl4Words[wordID]
+  if(lvlID === 'E') return lvl5Words[wordID]
 }
 
 function checkWord(word) {
