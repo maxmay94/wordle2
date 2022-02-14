@@ -2690,6 +2690,7 @@ const lvl3Words = [
 "crock",
 "mutes",
 "trims",
+"trope",
 "skein",
 "doted",
 "shuns",
