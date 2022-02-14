@@ -12,7 +12,8 @@ let currentGuess = []
 let prevTurns = []
 let secretWord
 let wordIndex
-let difficulty, challengeWord
+let difficulty = 1
+let challengeWord
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -23,13 +24,16 @@ const keys = document.querySelectorAll('.key')
 const gameBoard = document.querySelector('#main-game-area')
 const keyBoard = document.querySelector('#keyboard')
 
-const resetBtn = document.getElementById("reset-btn")
+const resetBtn = document.getElementById('reset-btn')
+const modalText = document.getElementById('modal-text')
+
+const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+const modalTitle = document.querySelector('.modal-title')
+
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 gameBoard.addEventListener('click', handleClick)
-keyBoard.addEventListener('click', handleClick)
-document.addEventListener('keydown', handleKeydown)
 resetBtn.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
@@ -38,8 +42,11 @@ resetBtn.addEventListener('click', init)
 init()
 
 function init() {
+  keyBoard.addEventListener('click', handleClick)
+  document.addEventListener('keydown', handleKeydown)
+  modalText.textContent = ''
   // num ? secretWord = setWord(num).toUpperCase() : secretWord = getWord(1).toUpperCase()
-  secretWord = getWord(1).toUpperCase()
+  secretWord = getWord(difficulty).toUpperCase()
   wordIndex = getWordIndex(secretWord.toLowerCase())
   console.log(secretWord)
   currentGuess = []
@@ -190,6 +197,28 @@ function renderTurn(thisTurn, bool) {
     if (i === 5) { clearInterval(timer) }
   }, time)
 
+  if (currentGuess.join('') === secretWord) {renderModal()}
+  
 
-   // add function for renderWin that pops a modal up and offers share challenge
+  // add function for renderWin that pops a modal up and offers share challenge
+}
+
+function renderModal() {
+  myModal.toggle()
+  keyBoard.removeEventListener('click', handleClick, false)
+  document.removeEventListener('keydown', handleKeydown, false)
+
+  let myString = ''
+
+  prevTurns.length > 1 ? modalTitle.textContent = `Congratulations! It took you ${prevTurns.length} turns to solve!` : modalTitle.textContent = `Woah!! You solved in 1 turn!`
+
+  prevTurns.forEach((turn) => {
+    turn.forEach((hitMiss) => {
+      if(hitMiss === 'miss') myString += ('⬜️ ')
+      else if(hitMiss === 'almost') myString += ('🟧 ')
+      else if(hitMiss === 'correct') myString += ('🟩 ')
+    })
+    myString += ('<br>')
+  })
+  modalText.innerHTML = myString
 }
