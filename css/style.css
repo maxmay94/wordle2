@@ -77,6 +77,11 @@ p {
   background-color: var(--key-main);
 }
 
+.modal-content {
+  background-color: var(--background);
+  color: var(--key-main);
+}
+
 .dropdown-menu {
   margin: 0 auto;
   padding-top: 0;

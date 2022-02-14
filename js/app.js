@@ -7,14 +7,11 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let turnNum
+let secretWord, wordIndex, challengeWordID
 let currentGuess = []
 let prevTurns = []
-let secretWord
-let wordIndex
 let difficulty = 1
-let challengeWordID
-
+let solve = false
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -27,13 +24,13 @@ const keyBoard = document.querySelector('#keyboard')
 const resetBtn = document.getElementById('reset-btn')
 const challengeBtn = document.getElementById('challenge-button')
 const challengeTextBox = document.getElementById('challenge-id')
+const shareBtn = document.getElementById('share-button')
 
 const lvl1Btn = document.getElementById('lvl-1')
 const lvl2Btn = document.getElementById('lvl-2')
 const lvl3Btn = document.getElementById('lvl-3')
 const lvl4Btn = document.getElementById('lvl-4')
 const lvl5Btn = document.getElementById('lvl-5')
-
 
 const modalText = document.getElementById('modal-text')
 
@@ -46,6 +43,7 @@ const modalTitle = document.querySelector('.modal-title')
 gameBoard.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', init)
 challengeBtn.addEventListener('click', challenge)
+shareBtn.addEventListener('click', renderModal)
 
 lvl1Btn.addEventListener('click', changeLvl)
 lvl2Btn.addEventListener('click', changeLvl)
@@ -55,14 +53,14 @@ lvl5Btn.addEventListener('click', changeLvl)
 
 /*-------------------------------- Functions --------------------------------*/
 
-
 init()
 
 function init() {
   keyBoard.addEventListener('click', handleClick)
   document.addEventListener('keydown', handleKeydown)
   modalText.textContent = ''
-  challengeTextBox.textContent = ''
+  solve = false
+  shareBtn.setAttribute("hidden", true)
 
   challengeWordID ? secretWord = setWord(challengeWordID).toUpperCase() : secretWord = getWord(difficulty).toUpperCase()
    
@@ -84,10 +82,6 @@ function init() {
 
   challengeWordID = null
 }
-
-/*
-  FUNCTIONS TO CHANGE DIFFICULTY AND SET CHALLENGE WORD
-*/
 
 function changeLvl(evt) {
   difficulty = parseInt(evt.target.id.substring(4))
@@ -171,7 +165,6 @@ function checkGuess() {
           keys[idx].classList.add('miss')
         }
       })
-      turnNum++
       prevTurns.push(thisTurn)
 
       check === secretWord.toLowerCase() ? renderTurn(thisTurn, true) : renderTurn(thisTurn, false)
@@ -231,26 +224,30 @@ function renderTurn(thisTurn, bool) {
 
   if (currentGuess.join('') === secretWord) {
     setTimeout(() => renderModal(), 2000)
+    solve = true
+    shareBtn.removeAttribute("hidden")
   }
 }
 
 function renderModal() {
-  myModal.toggle()
-  keyBoard.removeEventListener('click', handleClick, false)
-  document.removeEventListener('keydown', handleKeydown, false)
+  if (solve) {
+    myModal.toggle()
+    keyBoard.removeEventListener('click', handleClick, false)
+    document.removeEventListener('keydown', handleKeydown, false)
 
-  let myString = ''
+    let myString = ''
 
-  prevTurns.length > 1 ? modalTitle.textContent = `Congratulations! It took you ${prevTurns.length} turns to solve!` : modalTitle.textContent = `Woah!! You solved in 1 turn!`
+    prevTurns.length > 1 ? modalTitle.textContent = `Congratulations! It took you ${prevTurns.length} turns to solve!` : modalTitle.textContent = `Woah!! You solved in 1 turn!`
 
-  prevTurns.forEach((turn) => {
-    turn.forEach((hitMiss) => {
-      if(hitMiss === 'miss') myString += ('⬜️ ')
-      else if(hitMiss === 'almost') myString += ('🟧 ')
-      else if(hitMiss === 'correct') myString += ('🟩 ')
+    prevTurns.forEach((turn) => {
+      turn.forEach((hitMiss) => {
+        if(hitMiss === 'miss') myString += ('⬜️ ')
+        else if(hitMiss === 'almost') myString += ('🟧 ')
+        else if(hitMiss === 'correct') myString += ('🟩 ')
+      })
+      myString += ('<br>')
     })
-    myString += ('<br>')
-  })
-  myString += ('<br>' + 'Challenge your friends!<br>Use code: ' + wordIndex)
-  modalText.innerHTML = myString
+    myString += ('<br>Use code: ' + wordIndex)
+    modalText.innerHTML = myString
+  }
 }
