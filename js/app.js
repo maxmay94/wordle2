@@ -65,7 +65,7 @@ function init() {
   shareBtn.setAttribute("hidden", true)
 
   challengeWordID ? secretWord = setWord(challengeWordID).toUpperCase() : secretWord = getWord(difficulty).toUpperCase()
-   
+
   wordIndex = getWordIndex(secretWord.toLowerCase())
 
   console.log(secretWord)
@@ -147,19 +147,30 @@ function checkGuess() {
   let thisTurn = []
   let check = currentGuess.join('').toLowerCase()
 
+  let secretObj = secretWord.split('').reduce((obj, num) => {
+    if(obj[num]) {
+      obj[num]++
+    } else {
+      obj[num] = 1
+    }
+    return obj
+  }, {})
+
   if (currentGuess.length === 5) {
     if (checkWord(check)) {
       currentGuess.forEach((letter, i) => {
-
         if (letter === secretWord[i]) {
           thisTurn.push('correct')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
+          secretObj[letter]--
 
-        } else if (secretWord.includes(letter)) {  // Update for edge cases // ex. only color one 'A' in 'PANDA' if secret word is 'BREAD'
+        } else if (secretWord.includes(letter) && secretObj[letter] > 0) {  
+  
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('almost')
+          secretObj[letter]--
 
         } else {
           thisTurn.push('miss')
@@ -236,16 +247,15 @@ function renderModal() {
     myModal.toggle()
     keyBoard.removeEventListener('click', handleClick, false)
     document.removeEventListener('keydown', handleKeydown, false)
-
     let myString = ''
 
     prevTurns.length > 1 ? modalTitle.textContent = `Congratulations! It took you ${prevTurns.length} turns to solve!` : modalTitle.textContent = `Woah!! You solved in 1 turn!`
 
     prevTurns.forEach((turn) => {
       turn.forEach((hitMiss) => {
-        if(hitMiss === 'miss') myString += ('⬜️ ')
-        else if(hitMiss === 'almost') myString += ('🟧 ')
-        else if(hitMiss === 'correct') myString += ('🟩 ')
+        if (hitMiss === 'miss') myString += ('⬜️ ')
+        else if (hitMiss === 'almost') myString += ('🟧 ')
+        else if (hitMiss === 'correct') myString += ('🟩 ')
       })
       myString += ('<br>')
     })
@@ -257,8 +267,8 @@ function renderModal() {
 function copyToClipboard() {
   let newClip = modalText.innerHTML
   function updateClipboard(newClip) {
-    navigator.clipboard.writeText(newClip).then(function() {
-    }, function() {
+    navigator.clipboard.writeText(newClip).then(function () {
+    }, function () {
       console.log('Clip Failed')
     });
   }

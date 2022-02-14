@@ -78,8 +78,9 @@ p {
 }
 
 .modal-content {
-  background-color: var(--background);
-  color: var(--key-main);
+  background-color: var(--key-main);
+  color: var(--font-color);
+  font-family: var(--sans-serif);
 }
 
 .dropdown-menu {
