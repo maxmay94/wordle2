@@ -13,7 +13,7 @@ let prevTurns = []
 let secretWord
 let wordIndex
 let difficulty = 1
-let challengeWord
+let challengeWordID
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -25,6 +25,9 @@ const gameBoard = document.querySelector('#main-game-area')
 const keyBoard = document.querySelector('#keyboard')
 
 const resetBtn = document.getElementById('reset-btn')
+const challengeBtn = document.getElementById('challenge-button')
+const challengeTextBox = document.getElementById('challenge-id')
+
 const lvl1Btn = document.getElementById('lvl-1')
 const lvl2Btn = document.getElementById('lvl-2')
 const lvl3Btn = document.getElementById('lvl-3')
@@ -42,6 +45,8 @@ const modalTitle = document.querySelector('.modal-title')
 
 gameBoard.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', init)
+challengeBtn.addEventListener('click', challenge)
+
 lvl1Btn.addEventListener('click', changeLvl)
 lvl2Btn.addEventListener('click', changeLvl)
 lvl3Btn.addEventListener('click', changeLvl)
@@ -57,9 +62,10 @@ function init() {
   keyBoard.addEventListener('click', handleClick)
   document.addEventListener('keydown', handleKeydown)
   modalText.textContent = ''
-  // num ? secretWord = setWord(num).toUpperCase() : secretWord = getWord(1).toUpperCase()
-  secretWord = getWord(difficulty).toUpperCase()
+  challengeTextBox.textContent = ''
 
+  challengeWordID ? secretWord = setWord(challengeWordID).toUpperCase() : secretWord = getWord(difficulty).toUpperCase()
+   
   wordIndex = getWordIndex(secretWord.toLowerCase())
 
   console.log(secretWord)
@@ -75,6 +81,8 @@ function init() {
   keys.forEach((key) => {
     key.className = 'key shadow'
   })
+
+  challengeWordID = null
 }
 
 /*
@@ -83,6 +91,11 @@ function init() {
 
 function changeLvl(evt) {
   difficulty = parseInt(evt.target.id.substring(4))
+  init()
+}
+
+function challenge() {
+  challengeWordID = challengeTextBox.value
   init()
 }
 

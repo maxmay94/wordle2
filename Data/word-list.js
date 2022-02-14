@@ -5780,8 +5780,9 @@ function getWordIndex(word) {
 }
 
 function setWord(num) {
-  let lvlID = num.substring(0, 1)
+  let lvlID = num.substring(0, 1).toUpperCase()
   let wordID = num.substring(1)
+
   if(lvlID === 'A') return lvl1Words[wordID]
   if(lvlID === 'B') return lvl2Words[wordID]
   if(lvlID === 'C') return lvl3Words[wordID]
