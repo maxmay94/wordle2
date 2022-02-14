@@ -22,6 +22,7 @@ const gameBoard = document.querySelector('#main-game-area')
 const keyBoard = document.querySelector('#keyboard')
 
 const resetBtn = document.getElementById('reset-btn')
+const newGame = document.getElementById('new-game-modal-button')
 const challengeBtn = document.getElementById('challenge-button')
 const challengeTextBox = document.getElementById('challenge-id')
 const shareBtn = document.getElementById('share-button')
@@ -43,6 +44,7 @@ const modalTitle = document.querySelector('.modal-title')
 
 gameBoard.addEventListener('click', handleClick)
 resetBtn.addEventListener('click', init)
+newGame.addEventListener('click', init)
 challengeBtn.addEventListener('click', challenge)
 shareBtn.addEventListener('click', renderModal)
 clipBoardBtn.addEventListener('click', copyToClipboard)
@@ -98,7 +100,8 @@ function challenge() {
 function handleKeydown(evt) {
   clearAnimation()
   let press = evt.key
-  press = press.toUpperCase()
+
+  if(press) press = press.toUpperCase()
   if (press === 'BACKSPACE') {
     renderDelete()
   } else if (press === 'ENTER') {

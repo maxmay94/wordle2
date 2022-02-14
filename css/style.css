@@ -46,8 +46,6 @@ h1 {
   align-items: center;
 }
 
-
-
 main {
   display: flex;
   justify-content: center;
@@ -81,6 +79,7 @@ p {
   background-color: var(--key-main);
   color: var(--font-color);
   font-family: var(--sans-serif);
+  border-radius: 15px
 }
 
 .dropdown-menu {
@@ -154,6 +153,14 @@ p {
 
 .shadow {
   box-shadow: 0 1vmin 1vmin 0 rgba(41, 41, 41, 0.75) !important;
+}
+
+#clipboard-button {
+  background-color: var(--correct);
+}
+
+#new-game-modal-button {
+  background-color: var(--almost);
 }
 
 #enter, #delete {
