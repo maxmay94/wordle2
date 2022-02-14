@@ -151,11 +151,8 @@ function checkGuess() {
   let check = currentGuess.join('').toLowerCase()
 
   let secretObj = secretWord.split('').reduce((obj, num) => {
-    if(obj[num]) {
-      obj[num]++
-    } else {
-      obj[num] = 1
-    }
+    if(obj[num]) {obj[num]++} 
+    else {obj[num] = 1}
     return obj
   }, {})
 
