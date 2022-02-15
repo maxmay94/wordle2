@@ -67,7 +67,6 @@ function init() {
   solve = false
   shareBtn.setAttribute("hidden", true)
   
-
   challengeWordID ? secretWord = setWord(challengeWordID).toUpperCase() : secretWord = getWord(difficulty).toUpperCase()
 
   wordIndex = getWordIndex(secretWord.toLowerCase())
@@ -171,20 +170,23 @@ function checkGuess() {
   if (currentGuess.length === 5) {
     if (checkWord(check)) {
       currentGuess.forEach((letter, i) => {
-        if (letter === secretWord[i]) {
+        if (letter === secretWord[i]) { 
+          //  A262 ------> guess ENTER, why does the first E highlight?
+          console.log('correct ',secretObj)
+          secretObj[letter]--
           thisTurn.push('correct')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
-          secretObj[letter]--
 
-        } else if (secretWord.includes(letter) && secretObj[letter] > 0) {  
-  
+        } else if (secretWord.includes(letter) && secretObj[letter] > 0) { 
+          //  A262 ------> guess ENTER, why does the first E highlight?
+          console.log('almost ', secretObj)
+          secretObj[letter]--
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('almost')
-          secretObj[letter]--
-
         } else {
+
           thisTurn.push('miss')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('miss')
@@ -251,29 +253,33 @@ function renderTurn(thisTurn, bool) {
     setTimeout(() => renderModal(), 2000)
     solve = true
     shareBtn.removeAttribute("hidden")
+  } else if (prevTurns.length === 6) {
+    setTimeout(() => renderModal(), 2000)
+    shareBtn.removeAttribute("hidden")
   }
 }
 
 function renderModal() {
-  if (solve) {
-    myModal.toggle()
-    keyBoard.removeEventListener('click', handleClick, false)
-    document.removeEventListener('keydown', handleKeydown, false)
-    let myString = ''
-
+  if (solve) { 
     prevTurns.length > 1 ? modalTitle.textContent = `Congratulations! It took you ${prevTurns.length} turns to solve!` : modalTitle.textContent = `Woah!! You solved in 1 turn!`
-
-    prevTurns.forEach((turn) => {
-      turn.forEach((hitMiss) => {
-        if (hitMiss === 'miss') myString += ('⬜️ ')
-        else if (hitMiss === 'almost') myString += ('🟧 ')
-        else if (hitMiss === 'correct') myString += ('🟩 ')
-      })
-      myString += ('<br>')
-    })
-    myString += ('Use code: ' + wordIndex)
-    modalText.innerHTML = myString
+  } else {
+    modalTitle.textContent = `Dang, you didn't get it. the word was ${secretWord}...`
   }
+  myModal.toggle()
+  keyBoard.removeEventListener('click', handleClick, false)
+  document.removeEventListener('keydown', handleKeydown, false)
+  let myString = ''
+
+  prevTurns.forEach((turn) => {
+    turn.forEach((hitMiss) => {
+      if (hitMiss === 'miss') myString += ('⬜️ ')
+      else if (hitMiss === 'almost') myString += ('🟧 ')
+      else if (hitMiss === 'correct') myString += ('🟩 ')
+    })
+    myString += ('<br>')
+  })
+  myString += ('Use code: ' + wordIndex)
+  modalText.innerHTML = myString
 }
 
 function copyToClipboard() {
@@ -284,6 +290,7 @@ function copyToClipboard() {
       console.log('Clip Failed')
     });
   }
+  newClip += ('<br>https://maxmay94.github.io/wordle2/')
   newClip = newClip.replaceAll('<br>', '\n')
   updateClipboard(newClip)
 }
