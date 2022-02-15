@@ -35,10 +35,11 @@ const lvl4Btn = document.getElementById('lvl-4')
 const lvl5Btn = document.getElementById('lvl-5')
 
 const modalText = document.getElementById('modal-text')
-
-const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
 const modalTitle = document.querySelector('.modal-title')
+const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
 
+const toastMsg = document.getElementById('toast-message')
+const toastLiveExample = document.getElementById('liveToast')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -65,6 +66,7 @@ function init() {
   modalText.textContent = ''
   solve = false
   shareBtn.setAttribute("hidden", true)
+  
 
   challengeWordID ? secretWord = setWord(challengeWordID).toUpperCase() : secretWord = getWord(difficulty).toUpperCase()
 
@@ -89,11 +91,21 @@ function init() {
 
 function changeLvl(evt) {
   difficulty = parseInt(evt.target.id.substring(4))
+ 
+  var toast = new bootstrap.Toast(toastLiveExample)
+  toastMsg.textContent = `You've changed to Level ${difficulty}`
+  toast.show()
+
   init()
 }
 
 function challenge() {
   challengeWordID = challengeTextBox.value
+
+  var toast = new bootstrap.Toast(toastLiveExample)
+  toastMsg.textContent = `You've accepted a challenge!`
+  toast.show()
+
   init()
 }
 
