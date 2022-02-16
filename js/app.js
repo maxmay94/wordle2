@@ -10,9 +10,19 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
   const synthRisers = new Audio('Audio/synth-risers.m4a')
   const fullTrack = new Audio('Audio/full-track.m4a')
 
+  // const userData = {
+  //   turn1: 0,
+  //   turn2: 0,
+  //   turn3: 0,
+  //   turn4: 0,
+  //   turn5: 0,
+  //   turn6: 0,
+  //   fail: 0
+  // }
+
 /*---------------------------- Variables (state) ----------------------------*/
 
-let secretWord, wordIndex, challengeWordID
+let secretWord, wordIndex, challengeWordID, totalStats
 let currentGuess = []
 let prevTurns = []
 let difficulty = 1
@@ -34,15 +44,28 @@ const shareBtn = document.getElementById('share-button')
 const clipBoardBtn = document.getElementById('clipboard-button')
 const musicBtn = document.getElementById('music-button')
 
+const statsBtn = document.getElementById('stats-btn')
+const clearStatsBtn = document.getElementById('clear-stats-btn')
+
 const lvl1Btn = document.getElementById('lvl-1')
 const lvl2Btn = document.getElementById('lvl-2')
 const lvl3Btn = document.getElementById('lvl-3')
 const lvl4Btn = document.getElementById('lvl-4')
 const lvl5Btn = document.getElementById('lvl-5')
 
+const prog1 = document.getElementById('prog-1')
+const prog2 = document.getElementById('prog-2')
+const prog3 = document.getElementById('prog-3')
+const prog4 = document.getElementById('prog-4')
+const prog5 = document.getElementById('prog-5')
+const prog6 = document.getElementById('prog-6')
+
 const modalText = document.getElementById('modal-text')
 const modalTitle = document.querySelector('.modal-title')
-const myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+const myModal = new bootstrap.Modal(document.getElementById('share-modal'))
+
+const statsModalBody = document.getElementById('stats-modal-body')
+const statsModal = new bootstrap.Modal(document.getElementById('stats-modal'))
 
 const toastMsg = document.getElementById('toast-message')
 const toastLiveExample = document.getElementById('liveToast')
@@ -57,6 +80,14 @@ shareBtn.addEventListener('click', renderModal)
 musicBtn.addEventListener('click', soundTrack)
 clipBoardBtn.addEventListener('click', copyToClipboard)
 
+statsBtn.addEventListener('click', renderStats)
+
+clearStatsBtn.addEventListener('click', () => {
+  localStorage.clear()
+  // updateStats()
+  console.log(localStorage)
+})
+
 lvl1Btn.addEventListener('click', changeLvl)
 lvl2Btn.addEventListener('click', changeLvl)
 lvl3Btn.addEventListener('click', changeLvl)
@@ -68,6 +99,7 @@ lvl5Btn.addEventListener('click', changeLvl)
 init()
 
 function init() {
+
   keyBoard.addEventListener('click', handleClick)
   document.addEventListener('keydown', handleKeydown)
   modalText.textContent = ''
@@ -260,6 +292,7 @@ function renderTurn(thisTurn, bool) {
   if (currentGuess.join('') === secretWord) {
     setTimeout(() => renderModal(), 2000)
     solve = true
+    updateStats()
     shareBtn.removeAttribute("hidden")
   } else if (prevTurns.length === 6) {
     setTimeout(() => renderModal(), 2000)
@@ -273,6 +306,8 @@ function renderModal() {
   } else {
     modalTitle.textContent = `Dang, you didn't get it this time. The word was ${secretWord}...`
   }
+
+
   myModal.toggle()
   keyBoard.removeEventListener('click', handleClick, false)
   document.removeEventListener('keydown', handleKeydown, false)
@@ -288,6 +323,40 @@ function renderModal() {
   })
   myString += ('Use code: ' + wordIndex)
   modalText.innerHTML = myString
+}
+
+function renderStats() {
+  console.log('RENDER STATS')
+  statsModal.toggle()
+  let numPlays = getNumPlays()
+
+  console.log(localStorage)
+
+  if(localStorage['turn1']) { 
+    prog1.style.width = `${(parseInt(localStorage['turn1']) / numPlays) * 100}%`
+    prog1.textContent = `${parseInt(localStorage['turn1'])}`
+  }
+  if(localStorage['turn2']) { 
+    prog2.style.width = `${(parseInt(localStorage['turn2']) / numPlays) * 100}%`
+    prog2.textContent = `${parseInt(localStorage['turn2'])}`
+  }
+  if(localStorage['turn3']) { 
+    prog3.style.width = `${(parseInt(localStorage['turn3']) / numPlays) * 100}%`
+    prog3.textContent = `${parseInt(localStorage['turn3'])}`
+  }
+  if(localStorage['turn4']) { 
+    prog4.style.width = `${(parseInt(localStorage['turn4']) / numPlays) * 100}%`
+    prog4.textContent = `${parseInt(localStorage['turn4'])}`
+  }
+  if(localStorage['turn5']) { 
+    prog5.style.width = `${(parseInt(localStorage['turn5']) / numPlays) * 100}%`
+    prog5.textContent = `${parseInt(localStorage['turn5'])}`
+  }
+  if(localStorage['turn6']) { 
+    prog6.style.width = `${(parseInt(localStorage['turn6']) / numPlays) * 100}%`
+    prog6.textContent = `${parseInt(localStorage['turn6'])}`
+  }
+
 }
 
 function copyToClipboard() {
@@ -307,7 +376,34 @@ function soundTrack() {
   let bpm = setInterval(function () {
     if(prevTurns.length === 0) synth1.play()
     else if(prevTurns.length === 1) synth2.play()
-    else if(prevTurns.length === 2) synthRisers.play()
-    else fullTrack.play()
+    else if(prevTurns.length === 2) {
+      synth2.pause()
+      synth2.currentTime = 0
+      synthRisers.play()
+    }
+    else {
+      synthRisers.pause()
+      synthRisers.currentTime = 0
+      fullTrack.play()
+    }
   }, 0)
+}
+
+function updateStats() {
+  let temp = (parseInt(localStorage[`turn${prevTurns.length}`]))
+
+  if(!temp) {
+    localStorage.setItem(`turn${prevTurns.length}`, 1)
+  } else {
+    temp++
+    localStorage.setItem(`turn${prevTurns.length}`, temp)
+  }
+}
+
+function getNumPlays() {
+  let plays = 0
+  for(let [key, value] of Object.entries(localStorage)) {
+    plays += parseInt(value)
+  }
+  return plays
 }

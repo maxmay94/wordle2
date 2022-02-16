@@ -13,9 +13,7 @@ html {
 
 /* resets font size to be 62.5% of the user preference - 
      in most browser configurations this will be 10px */
-:root {
-  --serif: 'Marcellus', serif;
-  
+:root {  
   --background: rgb(137, 47, 47);
   --font-color: rgb(50, 50, 50);
   --title-color: rgb(182, 119, 68);
@@ -36,6 +34,13 @@ body {
         Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
   /* max-height: 90vh; */
+}
+
+.progress {
+  height: 2vmin;
+  margin: 15px;
+  background-color: var(--key-main);
+  font-size: 1.5vmin;
 }
 
 h1 {

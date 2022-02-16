@@ -41,8 +41,9 @@
         OPTIONS
       </button>
       <ul class="dropdown-menu dropdown-menu-sm-end">
-        <li><button class="dropdown-item btn btn-danger" type="button" id="music-button" >Music</button></li>
+        <li><button class="dropdown-item btn btn-danger" type="button" id="music-button">Music</button></li>
         <li><button class="dropdown-item btn btn-danger" type="button" id="reset-btn">New game</button></li>
+        <li><button class="dropdown-item btn btn-danger" type="button" id="stats-btn">Stats</button></li>
         <li><button class="dropdown-item btn btn-danger" type="button" id="lvl-1">Level 1</button></li>
         <li><button class="dropdown-item btn btn-danger" type="button" id="lvl-2">Level 2</button></li>
         <li><button class="dropdown-item btn btn-danger" type="button" id="lvl-3">Level 3</button></li>
@@ -141,8 +142,8 @@
       </div>
     </section>
 
-    <!------------------------------------ Modal ----------------------------------------->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <!------------------------------------ Share Modal ----------------------------------------->
+    <div class="modal fade" id="share-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -164,6 +165,68 @@
       </div>
     </div>
 
+    <!------------------------------------ Stats Modal ----------------------------------------->
+    <div class="modal fade" id="stats-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Stats</h5>
+          </div>
+
+          <div class="modal-body" id="stats-modal-body">
+            <div class="prog">
+              <h3>1 Turn: </h3>
+              <div class="progress">
+                <div id="prog-1" class="progress-bar bg-success" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="prog">
+              <h3>2 Turns: </h3>
+              <div class="progress">
+                <div id="prog-2" class="progress-bar bg-success" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="prog">
+              <h3>3 Turns: </h3>
+              <div class="progress">
+                <div id="prog-3" class="progress-bar bg-success" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="prog">
+              <h3>4 Turns: </h3>
+              <div class="progress">
+                <div id="prog-4" class="progress-bar bg-success" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="prog">
+              <h3>5 Turns: </h3>
+              <div class="progress">
+                <div id="prog-5" class="progress-bar bg-success" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="prog">
+              <h3>6 Turns: </h3>
+              <div class="progress">
+                <div id="prog-6" class="progress-bar bg-success" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" id="clear-stats-btn">Clear Stats</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!------------------------------------ Toast ----------------------------------------->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
       <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -173,7 +236,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body" id="toast-message">
-
         </div>
       </div>
     </div>
