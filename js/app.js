@@ -5,6 +5,11 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
   'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
   'Z', 'X', 'C', 'V', 'B', 'N', 'M']
 
+  const synth1 = new Audio('Audio/synth-1.m4a')
+  const synth2 = new Audio('Audio/synth-2.m4a')
+  const synthRisers = new Audio('Audio/synth-risers.m4a')
+  const fullTrack = new Audio('Audio/full-track.m4a')
+
 /*---------------------------- Variables (state) ----------------------------*/
 
 let secretWord, wordIndex, challengeWordID
@@ -27,6 +32,7 @@ const challengeBtn = document.getElementById('challenge-button')
 const challengeTextBox = document.getElementById('challenge-id')
 const shareBtn = document.getElementById('share-button')
 const clipBoardBtn = document.getElementById('clipboard-button')
+const musicBtn = document.getElementById('music-button')
 
 const lvl1Btn = document.getElementById('lvl-1')
 const lvl2Btn = document.getElementById('lvl-2')
@@ -48,6 +54,7 @@ resetBtn.addEventListener('click', init)
 newGame.addEventListener('click', init)
 challengeBtn.addEventListener('click', challenge)
 shareBtn.addEventListener('click', renderModal)
+musicBtn.addEventListener('click', soundTrack)
 clipBoardBtn.addEventListener('click', copyToClipboard)
 
 lvl1Btn.addEventListener('click', changeLvl)
@@ -169,22 +176,22 @@ function checkGuess() {
 
   if (currentGuess.length === 5) {
     if (checkWord(check)) {
+
       currentGuess.forEach((letter, i) => {
         if (letter === secretWord[i]) { 
-          //  A262 ------> guess ENTER, why does the first E highlight?
-          console.log('correct ',secretObj)
+
           secretObj[letter]--
           thisTurn.push('correct')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
 
         } else if (secretWord.includes(letter) && secretObj[letter] > 0) { 
-          //  A262 ------> guess ENTER, why does the first E highlight?
-          console.log('almost ', secretObj)
+
           secretObj[letter]--
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('almost')
+
         } else {
 
           thisTurn.push('miss')
@@ -192,6 +199,7 @@ function checkGuess() {
           keys[idx].classList.add('miss')
         }
       })
+
       prevTurns.push(thisTurn)
 
       check === secretWord.toLowerCase() ? renderTurn(thisTurn, true) : renderTurn(thisTurn, false)
@@ -263,7 +271,7 @@ function renderModal() {
   if (solve) { 
     prevTurns.length > 1 ? modalTitle.textContent = `Congratulations! It took you ${prevTurns.length} turns to solve!` : modalTitle.textContent = `Woah!! You solved in 1 turn!`
   } else {
-    modalTitle.textContent = `Dang, you didn't get it. the word was ${secretWord}...`
+    modalTitle.textContent = `Dang, you didn't get it this time. The word was ${secretWord}...`
   }
   myModal.toggle()
   keyBoard.removeEventListener('click', handleClick, false)
@@ -293,4 +301,13 @@ function copyToClipboard() {
   newClip += ('<br>https://maxmay94.github.io/wordle2/')
   newClip = newClip.replaceAll('<br>', '\n')
   updateClipboard(newClip)
+}
+
+function soundTrack() {
+  let bpm = setInterval(function () {
+    if(prevTurns.length === 0) synth1.play()
+    else if(prevTurns.length === 1) synth2.play()
+    else if(prevTurns.length === 2) synthRisers.play()
+    else fullTrack.play()
+  }, 0)
 }
