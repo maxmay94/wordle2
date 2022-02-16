@@ -10,19 +10,9 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
   const synthRisers = new Audio('Audio/synth-risers.m4a')
   const fullTrack = new Audio('Audio/full-track.m4a')
 
-  // const userData = {
-  //   turn1: 0,
-  //   turn2: 0,
-  //   turn3: 0,
-  //   turn4: 0,
-  //   turn5: 0,
-  //   turn6: 0,
-  //   fail: 0
-  // }
-
 /*---------------------------- Variables (state) ----------------------------*/
 
-let secretWord, wordIndex, challengeWordID, totalStats
+let secretWord, wordIndex, challengeWordID
 let currentGuess = []
 let prevTurns = []
 let difficulty = 1
@@ -403,7 +393,7 @@ function updateStats() {
 function getNumPlays() {
   let plays = 0
   for(let [key, value] of Object.entries(localStorage)) {
-    plays += parseInt(value)
+    if(key !== 'turn0') plays += parseInt(value)
   }
   return plays
 }
