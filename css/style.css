@@ -37,6 +37,7 @@ body {
 }
 
 .progress {
+  font-family: var(--sans-serif);
   height: 2vmin;
   margin: 15px;
   background-color: var(--key-main);
