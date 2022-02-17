@@ -88,13 +88,6 @@ p {
   border-radius: 15px
 }
 
-.dropdown-menu {
-  margin: 0 auto;
-  padding-top: 0;
-  border: 0;
-  background-color: var(--key-main);
-}
-
 #pick-word-number {
   background-color: var(--key-main);
 }
@@ -118,7 +111,7 @@ p {
 
 .square {
   color: var(--box-color);
-  border: solid var(--box-color);
+  border: 2px solid var(--box-color);
 }
 
 .row > div {
@@ -189,4 +182,53 @@ width: 10vmin;
 
 #kr3 {
   margin-left: 1.7vmin;
+}
+
+
+/* 768px is a common "breakpoint" width for tablets */
+@media only screen and (max-width: 640px) {
+  body {
+    /* tablet - two column display */
+    background-color: rgb(129, 69, 69);
+  }
+
+  main {
+    min-height: 100vh;
+    min-width: 100%;
+  }
+
+  .square {
+    color: var(--box-color);
+    border: 2px solid var(--box-color);
+  }
+  h1 {
+    margin-top: 0;
+    margin-bottom: 9vmin;
+  }
+
+  .row > div {
+    margin: .2vmin;
+    width: 10vmin;
+    height: 10vmin;
+  
+    font-family: var(--sans-serif);
+    font-size: 7vmin;
+    text-align: center;
+    line-height: 8.5vmin;
+  }
+
+  .k-row > div {
+    font-family: var(--sans-serif);
+    font-size: 3vmin;
+    color: var(--font-color); 
+    line-height: 8vmin;
+    margin: .4vmin;
+    height: 9vmin;
+    width: 9vmin;
+    border-radius: 7px;
+  }
+
+  #enter, #delete {
+    width: 12vmin;
+    }
 }

@@ -7,6 +7,7 @@ A remake of the hit game Wordle, originally created by Josh Wardle, recently acq
 [Play Wordle 2 Here](https://maxmay94.github.io/wordle2/)
 
 #### Located in the options menu :
+
 *  Music : toggle the games music on / off
 *  New Game : Start a new game
 *  Stats : See your stats
@@ -27,11 +28,10 @@ A remake of the hit game Wordle, originally created by Josh Wardle, recently acq
 
 ## Screenshots 
 
-![main screen](https://imgur.com/w9H2DaA)
-![options screen](https://imgur.com/JnyEAFZ)
-![stats screen](https://imgur.com/ydsAniB)
-![share screen](https://imgur.com/WNcXcgV)
-
+![main screen](https://imgur.com/w9H2DaA "main screen")
+![options screen](https://imgur.com/JnyEAFZ "options scrren")
+![stats screen](https://imgur.com/ydsAniB "stats screen")
+![share screen](https://imgur.com/WNcXcgV "share screen")
 
 ## Technologies Used  💻
 
