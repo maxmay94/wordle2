@@ -28,10 +28,15 @@ A remake of the hit game Wordle, originally created by Josh Wardle, recently acq
 
 ## Screenshots 
 
-![main screen](https://imgur.com/w9H2DaA "main screen")
-![options screen](https://imgur.com/JnyEAFZ "options scrren")
-![stats screen](https://imgur.com/ydsAniB "stats screen")
-![share screen](https://imgur.com/WNcXcgV "share screen")
+<!-- ![main-screen](https://imgur.com/w9H2DaA)
+![options-screen](https://imgur.com/JnyEAFZ)
+![stats-screen](https://imgur.com/ydsAniB)
+![share-screen](https://imgur.com/WNcXcgV) -->
+
+<img src="https://imgur.com/w9H2DaA" alt="main screen">
+<img src="https://imgur.com/JnyEAFZ" alt="options screen">
+<img src="https://imgur.com/ydsAniB" alt="stats screen">
+<img src="https://imgur.com/WNcXcgV" alt="share screen">
 
 ## Technologies Used  💻
 
