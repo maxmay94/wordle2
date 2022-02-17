@@ -31,8 +31,7 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
   const synthHit19 = new Audio('Audio/synth-hit-19.mp3')
   const synthHit20 = new Audio('Audio/synth-hit-20.mp3')
 
-  const hits = [synthHit1, synthHit2, synthHit3, synthHit4, synthHit5, synthHit6, synthHit7, synthHit8, synthHit9, synthHit10,
-                synthHit11, synthHit12, synthHit13, synthHit14, synthHit15, synthHit16, synthHit17, synthHit18, synthHit19, synthHit20]
+  const hits = [synthHit1, synthHit2, synthHit3, synthHit4, synthHit5, synthHit6, synthHit7, synthHit8, synthHit9, synthHit10, synthHit11, synthHit12, synthHit13, synthHit14, synthHit15, synthHit16, synthHit17, synthHit18, synthHit19, synthHit20]
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -41,6 +40,7 @@ let currentGuess = []
 let prevTurns = []
 let difficulty = 1
 let solve = false
+let music = false
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -212,84 +212,85 @@ function checkGuess() {
   let thisTurn = []
   let check = currentGuess.join('').toLowerCase()
 
-  let secretObj = secretWord.split('').reduce((obj, num) => {
-    if(obj[num]) {obj[num]++} 
-    else {obj[num] = 1}
-    return obj
-  }, {})
 
-
-
-
-
-  let lettersRemaining = [...secretWord]
 
 
 
   if (currentGuess.length === 5) {
     if (checkWord(check)) {
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+      let secretObj = secretWord.split('').reduce((obj, num) => {
+        if(obj[num]) {obj[num]++} 
+        else {obj[num] = 1}
+        return obj
+      }, {})
+    
+      console.log(secretObj)
+    
+      //let lettersRemaining = [...secretWord]
 
-
-      // for(let i = 0; i < 5; i++){
-      //   if (currentGuess[i] === lettersRemaining[i]) { 
-      //     // console.log(currentGuess[i],lettersRemaining[i])
-      //     lettersRemaining[i] = null
-
-
-      //     thisTurn.push('correct')
-      //     let idx = getKeyIndex(currentGuess[i])
-      //     keys[idx].classList.add('correct')
-      //   }
-      // }
-
-      // for(let i = 0; i < 5; i++) {
-      //   if (lettersRemaining.includes(currentGuess[i])) { 
-      //     lettersRemaining[i] = null
-
-
-      //     thisTurn.push('almost')
-      //     let idx = getKeyIndex(currentGuess[i])
-      //     keys[idx].classList.add('almost')
-
-      //   } else {
-
-      //     thisTurn.push('miss')
-      //     let idx = getKeyIndex(currentGuess[i])
-      //     keys[idx].classList.add('miss')
-      //   }
-      // }
-
-      // console.log('Letters remaining: ',lettersRemaining )
-
-
+      let result = []
+      let holder 
 
       currentGuess.forEach((letter, i) => {
         if (letter === secretWord[i]) { 
-
-          lettersRemaining[i] = null
-
-          // secretObj[letter]--
+          if(secretObj[letter] <= 0) {
+            thisTurn[holder] = 'miss'
+          }
+          secretObj[letter]--
           thisTurn.push('correct')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
 
         } else if (secretWord.includes(letter) && secretObj[letter] > 0) { 
-        // } else if (secretWord.includes(letter) && lettersRemaining.includes(letter)) { 
-
-          lettersRemaining[i] = null
-          // secretObj[letter]--
+          if(secretObj[letter] > 0) {
+            holder = i
+          }
+          secretObj[letter]--
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('almost')
 
         } else {
-
           thisTurn.push('miss')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('miss')
         }
       })
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+      // currentGuess.forEach((letter, i) => {
+      //   if (letter === secretWord[i]) { 
+
+      //     lettersRemaining[i] = null
+
+      //     secretObj[letter]--
+      //     thisTurn.push('correct')
+      //     let idx = getKeyIndex(letter)
+      //     keys[idx].classList.add('correct')
+
+      //   } else if (secretWord.includes(letter) && secretObj[letter] > 0) { 
+
+      //     lettersRemaining[i] = null
+          
+      //     secretObj[letter]--
+      //     thisTurn.push('almost')
+      //     let idx = getKeyIndex(letter)
+      //     keys[idx].classList.add('almost')
+
+      //   } else {
+
+      //     thisTurn.push('miss')
+      //     let idx = getKeyIndex(letter)
+      //     keys[idx].classList.add('miss')
+      //   }
+      // })
 
 
 
@@ -348,7 +349,6 @@ function renderTurn(thisTurn, bool) {
   squares[((prevTurns.length - 1) * 5) + i].classList.add('animate__animated', animation, `${thisTurn[i]}`, 'shadow')
 
   playSynthHit()
-
   i++
 
   let timer = setInterval(function () {
@@ -457,20 +457,25 @@ function getNumPlays() {
 }
 
 function soundTrack() {
-  let bpm = setInterval(function () {
-    if(prevTurns.length === 0) synth1.play()
-    else if(prevTurns.length === 1) synth2.play()
-    else if(prevTurns.length === 2) {
-      synth2.pause()
-      synth2.currentTime = 0
-      synthRisers.play()
-    }
-    else {
-      synthRisers.pause()
-      synthRisers.currentTime = 0
-      fullTrack.play()
-    }
-  }, 0)
+  music = !music
+  if(music) {
+    let bpm = setInterval(function () {
+      if(prevTurns.length === 0) synth1.play()
+      else if(prevTurns.length === 1) synth2.play()
+      else if(prevTurns.length === 2) {
+        synth2.pause()
+        synth2.currentTime = 0
+        synthRisers.play()
+      }
+      else {
+        synthRisers.pause()
+        synthRisers.currentTime = 0
+        fullTrack.play()
+      }
+    }, 0)
+  } else {
+    // clear interval here
+  }
 }
 
 function playSynthHit() {
