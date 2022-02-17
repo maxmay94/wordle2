@@ -189,13 +189,15 @@ width: 10vmin;
 @media only screen and (max-width: 640px) {
   body {
     /* tablet - two column display */
-    background-color: rgb(129, 69, 69);
-  }
-
-  main {
+    background-color: var(--background);
     min-height: 100vh;
     min-width: 100%;
   }
+
+  /* main {
+    min-height: 100vh;
+    min-width: 100%;
+  } */
 
   .square {
     color: var(--box-color);
@@ -203,32 +205,55 @@ width: 10vmin;
   }
   h1 {
     margin-top: 0;
-    margin-bottom: 9vmin;
+    font-size: 16vmin;
   }
 
   .row > div {
     margin: .2vmin;
-    width: 10vmin;
-    height: 10vmin;
+    width: 15vmin;
+    height: 15vmin;
   
     font-family: var(--sans-serif);
     font-size: 7vmin;
     text-align: center;
-    line-height: 8.5vmin;
+    line-height: 15vmin;
   }
 
   .k-row > div {
     font-family: var(--sans-serif);
     font-size: 3vmin;
     color: var(--font-color); 
-    line-height: 8vmin;
+    line-height: 13vmin;
     margin: .4vmin;
-    height: 9vmin;
+    height: 13vmin;
     width: 9vmin;
     border-radius: 7px;
   }
 
-  #enter, #delete {
-    width: 12vmin;
-    }
+#enter, #delete {
+  width: 12vmin;
+  }
+
+  .miss {
+    background-color: var(--miss);
+    border-color: var(--miss);
+    color: var(--font-color);
+  }
+  
+  .almost {
+    background-color: var(--almost);
+    border-color: var(--almost);
+    color: var(--font-color)
+  }
+  
+  .correct {
+    background-color: var(--correct);
+    border-color: var(--correct);
+    color: var(--font-color)
+  }
+
+  .btn-group {
+
+  }
+  
 }
