@@ -212,25 +212,15 @@ function checkGuess() {
   let thisTurn = []
   let check = currentGuess.join('').toLowerCase()
 
-
-
-
-
   if (currentGuess.length === 5) {
     if (checkWord(check)) {
 
-//////////////////////////////////////////////////////////////////////////////////////////////
       let secretObj = secretWord.split('').reduce((obj, num) => {
         if(obj[num]) {obj[num]++} 
         else {obj[num] = 1}
         return obj
       }, {})
-    
-      console.log(secretObj)
-    
-      //let lettersRemaining = [...secretWord]
 
-      let result = []
       let holder 
 
       currentGuess.forEach((letter, i) => {
@@ -258,45 +248,6 @@ function checkGuess() {
           keys[idx].classList.add('miss')
         }
       })
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-      // currentGuess.forEach((letter, i) => {
-      //   if (letter === secretWord[i]) { 
-
-      //     lettersRemaining[i] = null
-
-      //     secretObj[letter]--
-      //     thisTurn.push('correct')
-      //     let idx = getKeyIndex(letter)
-      //     keys[idx].classList.add('correct')
-
-      //   } else if (secretWord.includes(letter) && secretObj[letter] > 0) { 
-
-      //     lettersRemaining[i] = null
-          
-      //     secretObj[letter]--
-      //     thisTurn.push('almost')
-      //     let idx = getKeyIndex(letter)
-      //     keys[idx].classList.add('almost')
-
-      //   } else {
-
-      //     thisTurn.push('miss')
-      //     let idx = getKeyIndex(letter)
-      //     keys[idx].classList.add('miss')
-      //   }
-      // })
-
-
-
-
-
-
 
       prevTurns.push(thisTurn)
       check === secretWord.toLowerCase() ? renderTurn(thisTurn, true) : renderTurn(thisTurn, false)
