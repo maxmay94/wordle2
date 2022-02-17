@@ -215,6 +215,9 @@ function checkGuess() {
   if (currentGuess.length === 5) {
     if (checkWord(check)) {
 
+      //Create object or secretWord
+      // key = letter
+      // value = how many times that letter is in the word
       let secretObj = secretWord.split('').reduce((obj, num) => {
         if(obj[num]) {obj[num]++} 
         else {obj[num] = 1}
@@ -225,18 +228,20 @@ function checkGuess() {
 
       currentGuess.forEach((letter, i) => {
         if (letter === secretWord[i]) { 
+
+          // if this letter was already assigned to almost but is actually correct
           if(secretObj[letter] <= 0) {
             thisTurn[holder] = 'miss'
           }
+
           secretObj[letter]--
           thisTurn.push('correct')
           let idx = getKeyIndex(letter)
           keys[idx].classList.add('correct')
 
         } else if (secretWord.includes(letter) && secretObj[letter] > 0) { 
-          if(secretObj[letter] > 0) {
-            holder = i
-          }
+
+          holder = i
           secretObj[letter]--
           thisTurn.push('almost')
           let idx = getKeyIndex(letter)
