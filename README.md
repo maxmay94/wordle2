@@ -1,6 +1,6 @@
 # WORDLE 2
 
-A remake of the hit game Wordle, originally created by Josh Wardle, recently acquired by the New York Times.
+A remake of the hit game Wordle, originally created by Josh Wardle, recently acquired by the New York Times. I have added a few new features of my own though.
 
 ## Getting Started 🏁
 
@@ -28,21 +28,31 @@ A remake of the hit game Wordle, originally created by Josh Wardle, recently acq
 
 ## Screenshots 
 
-![main-screen](https://imgur.com/w9H2DaA.png)
-![options-screen](https://imgur.com/JnyEAFZ.png)
-![stats-screen](https://imgur.com/ydsAniB.png)
-![share-screen](https://imgur.com/WNcXcgV.png)
+<img src="https://imgur.com/w9H2DaA.png" alt="main-screen" width="400"/>
+<img src="https://imgur.com/JnyEAFZ.png" alt="options-screen" width="200"/>
+<img src="https://imgur.com/ydsAniB.png" alt="stats-screen" width="400"/>
+<img src="https://imgur.com/WNcXcgV.png" alt="share-screen" width="400"/>
 
 ## Technologies Used  💻
 
-JavaScript, HTML, CSS, animate.css, Elektron: Digitakt & Digitone
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+
+animate.css, Elektron: Digitakt & Digitone
 
 ## Next Steps : 🧊🧊🧊<em>**THE ICEBOX**</em>🧊🧊🧊
 
-1. Generally polish things up
-2. Optomize Mobile Responsiveness
-3. Fix and refine current Audio
-4. Add an Audio sequencer based on previous turns (loop through the prevTurns[] and play a nothing on miss, percussive hit on almost and sharp synth lead on correct)
+- [ ] Generally polish things up
+- [x] Optomize Mobile Responsiveness
+- [ ] Fix and refine current Audio
+- [ ] Add an Audio sequencer based on previous turns (loop through the prevTurns[] and play a nothing on miss, percussive hit on almost and sharp synth lead on correct)
 
 ## CREDITS 🙏
 
