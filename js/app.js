@@ -97,7 +97,6 @@ statsBtn.addEventListener('click', renderStats)
 
 clearStatsBtn.addEventListener('click', () => {
   localStorage.clear()
-  // console.log(localStorage)
 })
 
 lvl1Btn.addEventListener('click', changeLvl)
@@ -122,7 +121,7 @@ function init() {
 
   wordIndex = getWordIndex(secretWord.toLowerCase())
 
-  console.log(secretWord)
+  // console.log(secretWord)
   currentGuess = []
   prevTurns = []
 
@@ -203,7 +202,7 @@ function renderDelete() {
 }
 
 function renderBox(keyClick) {
-  console.log(keyClick)
+  // console.log(keyClick)
   //come back to this
   //make it so user can edit a letter without deleting previous letters
 }
@@ -230,9 +229,7 @@ function checkGuess() {
         if (letter === secretWord[i]) { 
 
           // if this letter was already assigned to almost but is actually correct
-          if(secretObj[letter] <= 0) {
-            thisTurn[holder] = 'miss'
-          }
+          if(secretObj[letter] <= 0) thisTurn[holder] = 'miss'
 
           secretObj[letter]--
           thisTurn.push('correct')
