@@ -35,7 +35,7 @@ const ltrs = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let secretWord, wordIndex, challengeWordID
+let secretWord, wordIndex, challengeWordID, bpm
 let currentGuess = []
 let prevTurns = []
 let difficulty = 1
@@ -229,7 +229,9 @@ function checkGuess() {
         if (letter === secretWord[i]) { 
 
           // if this letter was already assigned to almost but is actually correct
+          // -------------------------------------------------------------
           if(secretObj[letter] <= 0) thisTurn[holder] = 'miss'
+          // -------------------------------------------------------------
 
           secretObj[letter]--
           thisTurn.push('correct')
@@ -412,7 +414,7 @@ function getNumPlays() {
 function soundTrack() {
   music = !music
   if(music) {
-    let bpm = setInterval(function () {
+    bpm = setInterval(function () {
       if(prevTurns.length === 0) synth1.play()
       else if(prevTurns.length === 1) synth2.play()
       else if(prevTurns.length === 2) {
@@ -425,9 +427,9 @@ function soundTrack() {
         synthRisers.currentTime = 0
         fullTrack.play()
       }
-    }, 0)
+    }, 10)
   } else {
-    // clear interval here
+    clearInterval(bpm)
   }
 }
 
